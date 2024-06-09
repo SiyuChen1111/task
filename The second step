@@ -1,17 +1,16 @@
 chosen_propotions <- Num / sum(Num)
-set.seed(100)
-sampled_articles <- Name
+set.seed(123)
+sampled_articles <- vector("list",length(Name))
 total_sampled <- 0
 
 for (i in 1:length(Name)){
-  num_to_sample <- round(chosen_propotions[i] * 100)
-  sampled_articles[[i]] <- sample(x = 1:Num[i], size = num_to_sample,replace = FALSE) 
+  num_to_sample <-round(chosen_propotions[i] * 100)
+  sampled_articles[[i]] <- sample(x = 1:Num[i], size = num_to_sample, replace = FALSE )
   total_sampled <- total_sampled + num_to_sample
   if(total_sampled >= 100){
     break
   }
 }
-for (i in 1 : length(Name)) {
-  cat(sprintf(i,paste(sort(sampled_articles[[i]],collapse =","))))
+for (i in 1 : length(Name)){
+  cat(sprintf("Journal %d sample articles: %s\n",i,paste(sort(sampled_articles[[i]])),collapse =","))
 }
-  
